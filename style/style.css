@@ -97,3 +97,11 @@ h1 {
   font-size: 0.9rem;
   color: #aaa;
 }
+
+/* 日付のデザイン */
+.date-text {
+  font-size: clamp(1rem, 4vw, 1.2rem); /* レスポンシブ対応 */
+  color: #888; /* グレーで控えめに */
+  margin-bottom: 5px; /* 下の数字との隙間 */
+  font-weight: normal;
+}
