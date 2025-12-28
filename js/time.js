@@ -1,7 +1,12 @@
+// DOM要素をキャッシュするための変数
+let textElement = null;
+let barElement = null;
+
+// 今年の経過率を計算する関数
 function getYearProgress() {
   // 現在の年を取得
   let date = new Date();
-  year = date.getFullYear();
+  let year = date.getFullYear();
 
   // 今年の元日0時のunixタイムスタンプを取得
   let startOfYear = new Date(year, 0, 1, 0, 0, 0, 0).getTime();
@@ -23,11 +28,29 @@ function getYearProgress() {
   return yearProgress;
 }
 
+
 function display() {
-  let progress = getYearProgress();
-  document.getElementById("yearProgress").innerText = progress.toFixed(10);
+  // DOM要素がまだ取得できていなければ取得する（初回のみ実行される）
+  if (!textElement) {
+    textElement = document.getElementById("yearProgress");
+    barElement = document.getElementById("progressBar");
+  }
+
+  const progress = getYearProgress();
+
+  // 1. テキストの更新
+  if (textElement) {
+    textElement.innerText = progress.toFixed(8); // 桁数は好みで調整してください
+  }
+
+  // 2. プログレスバーの更新 (CSSのwidthを書き換える)
+  if (barElement) {
+    barElement.style.width = progress + "%";
+  }
 }
 
-window.onload = display;
-
-setInterval(display, 50);
+// 読み込み完了後に開始
+window.onload = function() {
+  display();
+  setInterval(display, 50);
+};
