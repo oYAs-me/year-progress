@@ -9,8 +9,8 @@ body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: #f0f2f5; /* 少し青みがかったグレー */
   color: #333;
-  /* 画面のど真ん中に配置する魔法 */
   display: flex;
+  flex-direction: column; /* 縦並び */
   justify-content: center;
   align-items: center;
   height: 100vh; /* 画面いっぱいの高さ */
@@ -58,7 +58,7 @@ h1 {
   font-weight: 500;
   color: #2c3e50;
   
-  /* ★追加: どうしても入りきらない時は折り返す（安全策） */
+  /* どうしても入りきらない時は折り返す（安全策） */
   word-wrap: break-word;
   word-break: break-all;
 }
@@ -104,4 +104,35 @@ h1 {
   color: #888; /* グレーで控えめに */
   margin-bottom: 5px; /* 下の数字との隙間 */
   font-weight: normal;
+}
+
+/* シェアボタンのデザイン */
+.share-button {
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* アイコンと文字の間隔 */
+  
+  background-color: #000; /* Xブラック */
+  color: #fff;
+  font-family: inherit; /* 親のフォントを継承 */
+  font-weight: bold;
+  font-size: 1rem;
+  
+  border: none;
+  border-radius: 50px; /* 丸っこく */
+  padding: 10px 24px;
+  margin: 20px auto; /* 上下の余白 */
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.share-button:hover {
+  opacity: 0.8; /* ホバー時に少し薄く */
+}
+
+/* ロゴアイコンのサイズ調整 */
+.x-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor; /* 文字色と同じ白にする */
 }

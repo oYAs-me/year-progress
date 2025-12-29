@@ -31,6 +31,24 @@ function getYearProgress(date) {
   return yearProgress;
 }
 
+// Xでシェアする関数
+function shareOnX() {
+  const progress = getYearProgress().toFixed(8); // 現在の％を取得
+  const year = new Date().getFullYear();
+  
+  // 投稿文を作成
+  const text = `${year}年は ${progress}% 経過しました`;
+  
+  // URLやハッシュタグの設定
+  const url = "https://oyas-me.github.io/year-progress/"; 
+  const hashtags = "YearProgress";
+
+  // Xの投稿画面のURLを作成 (エンコード処理)
+  const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;
+
+  // 新しいタブで開く
+  window.open(twitterUrl, '_blank');
+}
 
 function display() {
   // DOM要素がまだ取得できていなければ取得する（初回のみ実行される）
@@ -38,15 +56,19 @@ function display() {
     textElement = document.getElementById("yearProgress");
     barElement = document.getElementById("progressBar");
     dateElement = document.getElementById("currentDate");
+
+    // シェアボタンの設定
+    shareButtonElement = document.getElementById("shareBtn");
+    if (shareButtonElement) {
+      shareButtonElement.onclick = shareOnX;
+    }
   }
 
   const now = new Date();
   const progress = getYearProgress(now);
 
-// 1. 日付の更新
+  // 1. 日付の更新
   if (dateElement) {
-    // "ja-JP" を指定すると自動で「xxxx年xx月xx日」になります
-    // weekday: 'short' をつけると (日) などの曜日も入ります
     const dateStr = now.toLocaleDateString("ja-JP", {
       year: "numeric",
       month: "2-digit",
@@ -68,6 +90,7 @@ function display() {
     barElement.style.width = progress + "%";
   }
 }
+
 // 読み込み完了後に開始
 window.onload = function() {
   display();
