@@ -37,7 +37,7 @@ function shareOnX() {
   const year = new Date().getFullYear();
   
   // 投稿文を作成
-  const text = `${year}年は ${progress}% 経過しました`;
+  const text = `${year}年は ${progress}% 経過しました\n`;
   
   // URLやハッシュタグの設定
   const url = "https://oyas-me.github.io/year-progress/"; 
