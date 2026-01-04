@@ -46,8 +46,8 @@ function shareOnX() {
   // Xの投稿画面のURLを作成 (エンコード処理)
   const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;
 
-  // 新しいタブで開く
-  window.open(twitterUrl, '_blank');
+  // 同じタブで開く
+  window.location.href = twitterUrl;
 }
 
 function display() {
