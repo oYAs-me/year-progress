@@ -1,0 +1,72 @@
+/* シェアボタンのデザイン */
+.share-button {
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* アイコンと文字の間隔 */
+  
+  background-color: #000; /* Xブラック */
+  color: #fff;
+  font-family: inherit; /* 親のフォントを継承 */
+  font-weight: bold;
+  font-size: 1rem;
+  
+  border: none;
+  border-radius: 50px; /* 丸っこく */
+  padding: 10px 24px;
+  margin: 20px auto; /* 上下の余白 */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s; /* 背景色が変わるときのアニメーション */
+}
+
+/* --- 小ネタ用CSS（修正版） --- */
+
+/* 1. ホバーしたら背景色をTwitterブルーに */
+/* 鬱陶しいので削除 */
+/* .share-button:hover {
+  background-color: #1DA1F2;
+  opacity: 1;
+} */
+
+/* 2. アイコンを重ねるための設定 */
+.icon-wrapper {
+  display: inline-grid;         /* グリッドレイアウトにする */
+  place-items: center;   /* ど真ん中に配置 */
+  width: 1em;           /* サイズ固定 */
+  height: 1em;
+  position: relative;    /* 位置の基準 */
+}
+
+/* 3. アイコンの共通設定 */
+.x-icon, .twitter-icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  
+  /* 2つのアイコンをグリッドの「同じ場所」に重ねる */
+  grid-area: 1 / 1;
+  
+  /* ふんわり切り替えるアニメーション */
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* 4. デフォルトの状態 */
+.x-icon {
+  opacity: 1; /* Xは見えている */
+  transform: scale(1);
+}
+
+.twitter-icon {
+  opacity: 0; /* Twitterは透明で見えない */
+  transform: scale(0.5); /* 小さくしておく（演出） */
+}
+
+/* 5. ホバー時のスイッチ処理 */
+.share-button:hover .x-icon {
+  opacity: 0; /* Xを透明に */
+  transform: rotate(180deg) scale(0.5); /* 回しながら消す演出 */
+}
+
+.share-button:hover .twitter-icon {
+  opacity: 1; /* Twitterを出現させる */
+  transform: rotate(0deg) scale(1); /* 大きくしながら出す */
+}
